@@ -1,16 +1,16 @@
 module RefactoringRubyEdition
   class Customer
     attr_reader :name
-  
+
     def initialize(name)
       @name = name
       @rentals = []
     end
-  
+
     def add_rental(arg)
       @rentals << arg
     end
-  
+
     def statement
       result = "Rental Record for #{@name}\n"
       @rentals.each do |element|
@@ -19,7 +19,8 @@ module RefactoringRubyEdition
       end
       # add footer lines
       result += "Amount owed is #{total_charge}\n"
-      result += "You earned #{total_frequent_renter_points} frequent renter points"
+      result += "You earned #{total_frequent_renter_points} " \
+                'frequent renter points'
       result
     end
 
@@ -27,24 +28,25 @@ module RefactoringRubyEdition
       result = "<h1>Rentals for <em>#{@name}</em></h1><p>\n"
       @rentals.each do |element|
         # show figures for this rental
-        result += "\t" + element.movie.title + ": " + element.charge.to_s + "<br>\n"
+        result += "\t" + element.movie.title + ': ' +
+                  element.charge.to_s + "<br>\n"
       end
       # add footer lines
       result += "<p>You owe <em>#{total_charge}</em><p>\n"
-      result += "On this rental you earned " +
-                "<em>#{total_frequent_renter_points}</em> " +
-                "frequent renter points<p>"
+      result += 'On this rental you earned ' \
+                "<em>#{total_frequent_renter_points}</em> " \
+                'frequent renter points<p>'
       result
     end
 
     private
 
     def total_charge
-      @rentals.inject(0) { |sum, rental| sum + rental.charge }
+      @rentals.inject(0) { |a, e| a + e.charge }
     end
 
     def total_frequent_renter_points
-      @rentals.inject(0) { |sum, rental| sum + rental.frequent_renter_points }
+      @rentals.inject(0) { |a, e| a + e.frequent_renter_points }
     end
   end
 end
