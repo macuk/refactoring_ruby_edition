@@ -37,6 +37,17 @@ module RefactoringRubyEdition
       assert_equal out, @alice.statement
     end
 
+    def test_html_statement
+      @alice.add_rental(Rental.new(@over_the_top, 3))
+      @alice.add_rental(Rental.new(@mr_holmes, 1))
+      out = "<h1>Rentals for <em>Alice</em></h1><p>\n"
+      out << "\tOver the Top: 3.5<br>\n"
+      out << "\tMr. Holmes: 3<br>\n"
+      out << "<p>You owe <em>6.5</em><p>\n"
+      out << "On this rental you earned <em>2</em> frequent renter points<p>"
+      assert_equal out, @alice.html_statement
+    end
+
     def test_all_movies
       @alice.add_rental(Rental.new(@over_the_top, 6))
       @alice.add_rental(Rental.new(@mr_holmes, 4))
