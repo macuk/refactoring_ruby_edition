@@ -1,5 +1,4 @@
 require "refactoring_ruby_edition/version"
-
-module RefactoringRubyEdition
-  # Your code goes here...
-end
+require "refactoring_ruby_edition/movie"
+require "refactoring_ruby_edition/rental"
+require "refactoring_ruby_edition/customer"
